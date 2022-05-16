@@ -46,12 +46,24 @@ function initMessenger(newUserName){
     console.log('Message parsed', messageData);
   });
 
+
+
+
   messageForm.addEventListener('submit', e => {
     e.preventDefault();
     sendMessage(messageInput.value, ws);
     messageInput.value = '';
   });
 }
+
+messageForm.addEventListener('input', e => {
+  e.preventDefault();
+  someoneIsTypingHandler(newUserName, ws);
+});
+
+
+
+
 
 function handleNewUser(userData){
   const newUserDiv = document.createElement('div');
@@ -79,6 +91,14 @@ function handleNewMessage(messageData) {
   newMessageDiv.setAttribute('data-id', messageData.id);
   newMessageDiv.appendChild(messageLikes);
   newMessageDiv.innerText = messageData.data;
+
+
+
+
+
+
+
+
 
   messagesContainer.appendChild(newMessageDiv);
 }
